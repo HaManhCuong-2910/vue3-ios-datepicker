@@ -1,0 +1,47 @@
+.rolldate-container {
+  .icon-close-roll-date {
+    --default-url-icon: url("../svg/close.svg");
+    position: absolute;
+    display: block;
+    top: 16px;
+    right: 16px;
+    background-image: var(--default-url-icon);
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: 5;
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.v3-ios-datepicker {
+  --v3-ios-datepicker-border-color: #dcdfe6;
+  --v3-ios-datepicker-border-radius: 4px;
+  --v3-ios-datepicker-font-size: 14px;
+  --v3-ios-datepicker-icon-size: 14px;
+  --v3-ios-datepicker-text-color: #606266;
+}
+
+.vue3-ios-datepicker-container {
+  display: flex;
+  padding: 4px 11px;
+  border: 1px solid var(--v3-ios-datepicker-border-color);
+  border-radius: var(--v3-ios-datepicker-border-radius);
+}
+.vue3-ios-datepicker-icon {
+  width: var(--v3-ios-datepicker-icon-size);
+  margin-right: 8px;
+}
+
+.vue3-ios-datepicker-input {
+  outline: none;
+  border: none;
+  padding: 0px;
+  background: none;
+  box-sizing: border-box;
+  -webkit-appearance: none;
+  font-family: inherit;
+  font-size: var(--v3-ios-datepicker-font-size);
+  color: var(--v3-ios-datepicker-text-color);
+  width: 100%;
+}

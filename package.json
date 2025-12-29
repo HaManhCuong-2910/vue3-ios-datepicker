@@ -1,0 +1,35 @@
+{
+  "name": "vue3-ios-datepicker",
+  "version": "0.0.2",
+  "type": "module",
+  "main": "dist/vue3-ios-datepicker.umd.js",
+  "module": "dist/vue3-ios-datepicker.es.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "peerDependencies": {
+    "vue": "^3.0.0"
+  },
+  "scripts": {
+    "dev": "vite --host --port 2050",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "dayjs": "^1.11.19",
+    "nanoid": "^5.1.6",
+    "vue": "^3.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.10.1",
+    "@vitejs/plugin-vue": "^6.0.1",
+    "@vue/tsconfig": "^0.8.1",
+    "sass-embedded": "^1.97.1",
+    "typescript": "~5.9.3",
+    "vite": "^7.2.4",
+    "vite-plugin-css-injected-by-js": "^3.5.2",
+    "vite-plugin-dts": "^4.5.4",
+    "vue-tsc": "^3.1.4"
+  }
+}
