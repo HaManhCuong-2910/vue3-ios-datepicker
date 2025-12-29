@@ -1,7 +1,8 @@
 ## Getting Started
 
-![demo](image.png)
 A ios Date picker for website in vue 3
+
+![](image.png)
 
 ## Features
 
