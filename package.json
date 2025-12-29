@@ -16,6 +16,14 @@
     "build": "vite build",
     "preview": "vite preview"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HaManhCuong-2910/vue3-ios-datepicker"
+  },
+  "bugs": {
+    "url": "https://github.com/HaManhCuong-2910/vue3-ios-datepicker/issues"
+  },
+  "homepage": "https://github.com/HaManhCuong-2910/vue3-ios-datepicker#readme",
   "dependencies": {
     "dayjs": "^1.11.19",
     "nanoid": "^5.1.6",
