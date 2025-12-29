@@ -35,6 +35,7 @@ const props = defineProps<{
   class: string;
   format: string;
   title: string;
+  iconClose?: string;
   defaultValue?: Date;
   confirmLabel: string;
   options?: IOptions;
@@ -83,6 +84,7 @@ const onInitElement = async () => {
       props.options,
       props.defaultValue,
       props.confirmLabel,
+      props.iconClose,
       (value: string) => {
         emits("update:modelValue", value);
         emits("onChange", value);

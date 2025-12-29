@@ -18,6 +18,7 @@
       :title="props.title"
       :default-value="props.defaultValue"
       :confirm-label="props.confirmLabel"
+      :icon-close="props.iconClose"
       :options="props.options"
       @update:model-value="
         (val) => emits('update:modelValue', dayjs(val, props.format).toDate())
@@ -29,7 +30,7 @@
 
 <script setup lang="ts">
 import { useId } from "vue";
-import { computed, onMounted, ref, watch } from "vue";
+import { computed, ref, watch } from "vue";
 import DatePicker from "./DatePicker.vue";
 import dayjs from "dayjs";
 import type { IOptions } from "../models/types";
@@ -70,17 +71,6 @@ const emits = defineEmits<{
 const key = ref(0);
 const inputId = computed(() => props.id ?? `vue3-ios-date-picker-${useId()}`);
 
-const setIcon = () => {
-  if (props.iconClose) {
-    const el = document.querySelector(
-      ".rolldate-container .icon-close-roll-date"
-    ) as HTMLElement | null;
-    if (el) {
-      el.style.setProperty("--default-url-icon", `url(${props.iconClose})`);
-    }
-  }
-};
-
 const customValue = computed(() => {
   return props.modelValue ? dayjs(props.modelValue).format(props.format) : "";
 });
@@ -100,13 +90,8 @@ watch(
   ],
   () => {
     key.value++;
-    setIcon();
   }
 );
-
-onMounted(() => {
-  setIcon();
-});
 </script>
 
 <style scoped lang="scss"></style>
