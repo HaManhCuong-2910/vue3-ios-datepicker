@@ -24,6 +24,18 @@
     "url": "https://github.com/HaManhCuong-2910/vue3-ios-datepicker/issues"
   },
   "homepage": "https://github.com/HaManhCuong-2910/vue3-ios-datepicker#readme",
+  "keywords": [
+    "vue3",
+    "datepicker",
+    "ios",
+    "vue3-datepicker",
+    "vue3-ios-datepicker",
+    "vue-component",
+    "vue3-component",
+    "vue3-datepicker",
+    "ios-datepicker"
+  ],
+  "author": "Ha Manh Cuong",
   "dependencies": {
     "dayjs": "^1.11.19",
     "nanoid": "^5.1.6",
