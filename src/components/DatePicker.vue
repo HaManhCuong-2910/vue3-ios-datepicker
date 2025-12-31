@@ -39,6 +39,7 @@ const props = defineProps<{
   defaultValue?: Date;
   confirmLabel: string;
   options?: IOptions;
+  disabledDate?: (date: Date) => boolean;
 }>();
 const emits = defineEmits<{
   (e: "update:modelValue", value: string): void;
@@ -85,6 +86,9 @@ const onInitElement = async () => {
       props.defaultValue,
       props.confirmLabel,
       props.iconClose,
+      (dayValue: Date) => {
+        return props.disabledDate ? props.disabledDate(dayValue) : false;
+      },
       (value: string) => {
         emits("update:modelValue", value);
         emits("onChange", value);

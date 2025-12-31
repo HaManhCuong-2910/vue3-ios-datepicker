@@ -2,14 +2,19 @@
   "compilerOptions": {
     "target": "ESNext",
     "module": "ESNext",
+    "moduleResolution": "bundler",
+    "lib": ["ESNext", "DOM"],
+    "jsx": "preserve",
+    "types": ["node", "vue"],
     "declaration": true,
     "emitDeclarationOnly": false,
+    "strict": true,
+    "skipLibCheck": true,
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"]
-    },
-    "strict": true,
-    "skipLibCheck": true
+    }
   },
-  "include": ["src", "src/**/*.d.ts"]
+  "include": ["src", "src/**/*.d.ts"],
+  "exclude": ["node_modules", "dist"]
 }

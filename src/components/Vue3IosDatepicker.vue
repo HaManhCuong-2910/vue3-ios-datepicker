@@ -20,6 +20,7 @@
       :confirm-label="props.confirmLabel"
       :icon-close="props.iconClose"
       :options="props.options"
+      :disabled-date="props.disabledDate"
       @update:model-value="
         (val) => emits('update:modelValue', dayjs(val, props.format).toDate())
       "
@@ -52,6 +53,7 @@ const props = withDefaults(
     confirmLabel?: string;
     options?: IOptions;
     icon?: string;
+    disabledDate?: (date: Date) => boolean;
   }>(),
   {
     placeholder: "Select date",
