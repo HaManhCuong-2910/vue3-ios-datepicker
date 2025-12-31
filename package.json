@@ -33,7 +33,9 @@
     "vue-component",
     "vue3-component",
     "vue3-datepicker",
-    "ios-datepicker"
+    "ios-datepicker",
+    "vue 3",
+    "datepicker"
   ],
   "author": "Ha Manh Cuong",
   "dependencies": {
