@@ -39,6 +39,8 @@ const props = defineProps<{
   defaultValue?: Date;
   confirmLabel: string;
   options?: IOptions;
+  lang: string;
+  langObjectCustom?: object;
   disabledDate?: (date: Date) => boolean;
 }>();
 const emits = defineEmits<{
@@ -89,6 +91,8 @@ const onInitElement = async () => {
       (dayValue: Date) => {
         return props.disabledDate ? props.disabledDate(dayValue) : false;
       },
+      props.lang,
+      props.langObjectCustom,
       (value: string) => {
         emits("update:modelValue", value);
         emits("onChange", value);

@@ -21,6 +21,8 @@
       :icon-close="props.iconClose"
       :options="props.options"
       :disabled-date="props.disabledDate"
+      :lang="props.lang"
+      :lang-object-custom="props.locale"
       @update:model-value="
         (val) => emits('update:modelValue', dayjs(val, props.format).toDate())
       "
@@ -53,6 +55,8 @@ const props = withDefaults(
     confirmLabel?: string;
     options?: IOptions;
     icon?: string;
+    lang: string;
+    locale?: object;
     disabledDate?: (date: Date) => boolean;
   }>(),
   {
@@ -63,6 +67,7 @@ const props = withDefaults(
     class: "",
     inputClass: "",
     icon: CalendarIcon,
+    lang: "en",
   }
 );
 const emits = defineEmits<{
