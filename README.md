@@ -64,6 +64,8 @@ const value = ref<Date>(new Date());
 | `icon`         | `String`                            | `CalendarIcon` | Custom calendar icon                                                                                  |
 | `disabledDate` | `Function: (data: Date) => boolean` |                | a function determining if a date is disabled with that date as its parameter. Should return a Boolean |
 | `options`      | `Object`                            |                | See in below                                                                                          |
+| `lang`         | `String`                            | `en`           | language                                                                                              |
+| `locale`       | `Object`                            |                | Locale Object                                                                                         |
 
 ## Options
 
