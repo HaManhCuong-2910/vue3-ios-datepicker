@@ -55,7 +55,7 @@ const props = withDefaults(
     confirmLabel?: string;
     options?: IOptions;
     icon?: string;
-    lang: string;
+    lang?: string;
     locale?: object;
     disabledDate?: (date: Date) => boolean;
   }>(),
