@@ -68,7 +68,7 @@ const props = withDefaults(
     inputClass: "",
     icon: CalendarIcon,
     lang: "en",
-  }
+  },
 );
 const emits = defineEmits<{
   (e: "update:modelValue", value: Date): void;
@@ -94,10 +94,17 @@ watch(
     props.class,
     props.inputClass,
     props.iconClose,
+    props.options,
+    props.lang,
+    props.locale,
+    props.icon,
   ],
   () => {
     key.value++;
-  }
+  },
+  {
+    deep: true,
+  },
 );
 </script>
 
