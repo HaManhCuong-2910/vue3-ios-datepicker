@@ -25,7 +25,6 @@ import { nanoid } from "nanoid";
 import type { IOptions } from "../models/types.js";
 
 const EDatePicker = ref<HTMLInputElement | null>(null);
-let rollDate = null;
 let timer: NodeJS.Timeout | null = null;
 const props = defineProps<{
   modelValue: string;
@@ -48,8 +47,9 @@ const emits = defineEmits<{
   (e: "onChange", value: string): void;
 }>();
 
+const stableId = nanoid();
 const ariaControls = computed(() => {
-  return `${props.id}-${nanoid()}`;
+  return `${props.id}-${stableId}`;
 });
 
 const normalizeDateFormat = (format: string) => {
@@ -80,7 +80,7 @@ const onInitElement = async () => {
   timer = setTimeout(() => {
     if (!EDatePicker.value) return;
     customRollDate(
-      '[aria-controls="' + ariaControls.value + '"]',
+      EDatePicker.value,
       normalizeDateFormat(props.format),
       props.title,
       props.modelValue,
@@ -107,7 +107,6 @@ onMounted(async () => {
 
 onUnmounted(() => {
   if (timer) clearTimeout(timer);
-  rollDate = null;
 });
 </script>
 

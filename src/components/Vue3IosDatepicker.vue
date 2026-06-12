@@ -32,8 +32,9 @@
 </template>
 
 <script setup lang="ts">
-import { useId } from "vue";
 import { computed, ref, watch } from "vue";
+import * as Vue from "vue";
+import { nanoid } from "nanoid";
 import DatePicker from "./DatePicker.vue";
 import dayjs from "dayjs";
 import type { IOptions } from "../models/types";
@@ -76,7 +77,8 @@ const emits = defineEmits<{
 }>();
 
 const key = ref(0);
-const inputId = computed(() => props.id ?? `vue3-ios-date-picker-${useId()}`);
+const generatedId = (Vue as any).useId ? (Vue as any).useId() : nanoid();
+const inputId = computed(() => props.id ?? `vue3-ios-date-picker-${generatedId}`);
 
 const customValue = computed(() => {
   return props.modelValue ? dayjs(props.modelValue).format(props.format) : "";
@@ -84,20 +86,15 @@ const customValue = computed(() => {
 
 watch(
   () => [
-    props.id,
     props.format,
     props.title,
     props.defaultValue,
     props.confirmLabel,
-    props.placeholder,
-    props.name,
-    props.class,
-    props.inputClass,
     props.iconClose,
     props.options,
     props.lang,
     props.locale,
-    props.icon,
+    props.disabledDate,
   ],
   () => {
     key.value++;
