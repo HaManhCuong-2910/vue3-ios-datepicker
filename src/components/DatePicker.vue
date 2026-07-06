@@ -14,18 +14,35 @@
       :id="props.id"
       :aria-controls="ariaControls"
     />
+
+    <IosDatePickerModal
+      :is-open="isOpen"
+      :model-value="props.modelValue"
+      :format="normalizedFormat"
+      :title="props.title"
+      :default-value="props.defaultValue"
+      :confirm-label="props.confirmLabel"
+      :icon-close="props.iconClose"
+      :disabled-date="props.disabledDate"
+      :lang="props.lang"
+      :lang-object-custom="props.langObjectCustom"
+      :options="props.options"
+      @confirm="handleConfirm"
+      @cancel="handleCancel"
+    />
   </div>
 </template>
 
 <script setup lang="ts">
-import { computed, nextTick, onMounted, onUnmounted, ref } from "vue";
-// @ts-ignore
-import { customRollDate } from "../assets/js/rolldate.min.js";
+import { computed, onMounted, onUnmounted, ref } from "vue";
 import { nanoid } from "nanoid";
 import type { IOptions } from "../models/types.js";
+import IosDatePickerModal from "./IosDatePickerModal.vue";
 
 const EDatePicker = ref<HTMLInputElement | null>(null);
-let timer: NodeJS.Timeout | null = null;
+const isOpen = ref(false);
+let containerElement: HTMLElement | null = null;
+
 const props = defineProps<{
   modelValue: string;
   placeholder: string;
@@ -42,6 +59,7 @@ const props = defineProps<{
   langObjectCustom?: object;
   disabledDate?: (date: Date) => boolean;
 }>();
+
 const emits = defineEmits<{
   (e: "update:modelValue", value: string): void;
   (e: "onChange", value: string): void;
@@ -75,38 +93,37 @@ const normalizeDateFormat = (format: string) => {
   });
 };
 
-const onInitElement = async () => {
-  await nextTick();
-  timer = setTimeout(() => {
-    if (!EDatePicker.value) return;
-    customRollDate(
-      EDatePicker.value,
-      normalizeDateFormat(props.format),
-      props.title,
-      props.modelValue,
-      props.options,
-      props.defaultValue,
-      props.confirmLabel,
-      props.iconClose,
-      (dayValue: Date) => {
-        return props.disabledDate ? props.disabledDate(dayValue) : false;
-      },
-      props.lang,
-      props.langObjectCustom,
-      (value: string) => {
-        emits("update:modelValue", value);
-        emits("onChange", value);
-      }
-    );
-  }, 300);
+const normalizedFormat = computed(() => {
+  return normalizeDateFormat(props.format);
+});
+
+const openModal = (e: Event) => {
+  e.preventDefault();
+  e.stopPropagation();
+  isOpen.value = true;
 };
 
-onMounted(async () => {
-  await onInitElement();
+const handleConfirm = (value: string) => {
+  emits("update:modelValue", value);
+  emits("onChange", value);
+  isOpen.value = false;
+};
+
+const handleCancel = () => {
+  isOpen.value = false;
+};
+
+onMounted(() => {
+  containerElement = EDatePicker.value?.closest(".vue3-ios-datepicker-container") as HTMLElement || null;
+  if (containerElement) {
+    containerElement.addEventListener("click", openModal);
+  }
 });
 
 onUnmounted(() => {
-  if (timer) clearTimeout(timer);
+  if (containerElement) {
+    containerElement.removeEventListener("click", openModal);
+  }
 });
 </script>
 
